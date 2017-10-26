@@ -53,6 +53,7 @@ public class PbMessages {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("conversations");
         DatabaseReference userRef = reference.child("g5561yqarrWCVLMN92zrYZzoVyk1");
+        userRef.removeValue();
         DatabaseReference messagesRef = FirebaseDatabase.getInstance().getReference("messages");
         DatabaseReference pushKeyRef = FirebaseDatabase.getInstance().getReference("pushKeys");
 
@@ -81,13 +82,13 @@ public class PbMessages {
                     messages.get(messages.size()-1).getBody(), getAvatarImage(webClient, user),
                     messages.get(messages.size()-1).getType(), time, key);
 
-            pushKeyRef.child(conversationId).setValue(key);
+//            pushKeyRef.child(conversationId).setValue(key);
 
             Map<String, Object> m = new HashMap<>();
 //            Map<String, Object> messagesMap = new HashMap<>();
             m.put(conversationId, conversation);
 //            messagesMap.put(conversationId, messages);
-//            userRef.updateChildren(m);
+            userRef.updateChildren(m);
 //            messagesRef.updateChildren(messagesMap);
             userRef.child(key).setValue(conversation);
 

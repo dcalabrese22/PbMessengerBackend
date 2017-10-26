@@ -108,26 +108,27 @@ public class DbListener {
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
                     PbConversation conversation = dataSnapshot.getValue(PbConversation.class);
-                    String id = conversation.getId();
-                    try {
-                        final WebClient webClient = new WebClient();
-                        final HtmlPage loginPage = webClient.getPage("https://www.pinkbike.com/user/login/");
-                        final HtmlForm loginForm = loginPage.getFormByName("loginform");
-                        final HtmlSubmitInput button = loginForm.getInputByValue("Login");
-                        final HtmlTextInput email = loginForm.getInputByName("username-login-loginlen");
-                        email.setValueAttribute(userName);
-
-                        final HtmlPasswordInput password = loginForm.getInputByName("password-password-lt200");
-                        password.setValueAttribute(pass);
-
-                        button.click();
-                        System.out.println("logged in");
-                        final HtmlPage conversationPageToDelete = webClient.getPage(
-                                "https://www.pinkbike.com/u/dcalabrese22/mail/x_deletesingle/" + id);
-                        webClient.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    String key = dataSnapshot.getKey();
+                    System.out.println(key.startsWith("-"));
+//                    try {
+//                        final WebClient webClient = new WebClient();
+//                        final HtmlPage loginPage = webClient.getPage("https://www.pinkbike.com/user/login/");
+//                        final HtmlForm loginForm = loginPage.getFormByName("loginform");
+//                        final HtmlSubmitInput button = loginForm.getInputByValue("Login");
+//                        final HtmlTextInput email = loginForm.getInputByName("username-login-loginlen");
+//                        email.setValueAttribute(userName);
+//
+//                        final HtmlPasswordInput password = loginForm.getInputByName("password-password-lt200");
+//                        password.setValueAttribute(pass);
+//
+//                        button.click();
+//                        System.out.println("logged in");
+//                        final HtmlPage conversationPageToDelete = webClient.getPage(
+//                                "https://www.pinkbike.com/u/dcalabrese22/mail/x_deletesingle/" + id);
+//                        webClient.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
 
                 @Override
