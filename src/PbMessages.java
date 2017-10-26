@@ -90,7 +90,7 @@ public class PbMessages {
 //            messagesMap.put(conversationId, messages);
             userRef.updateChildren(m);
 //            messagesRef.updateChildren(messagesMap);
-            userRef.child(key).setValue(conversation);
+//            userRef.child(key).setValue(conversation);
 
         }
 
